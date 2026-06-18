@@ -1,0 +1,41 @@
+<h1>Clientes</h1>
+
+<a href="{% url 'nuevo' %}">Nuevo Cliente</a>
+
+<table border="1">
+
+<tr>
+
+<th>ID</th>
+
+<th>Razón Social</th>
+
+<th>Correo</th>
+
+<th>Acciones</th>
+
+</tr>
+
+{% for c in clientes %}
+
+<tr>
+
+<td>{{c.id}}</td>
+
+<td>{{c.razon_social}}</td>
+
+<td>{{c.correo_corporativo}}</td>
+
+<td>
+
+<a href="{% url 'editar' c.id %}">Editar</a>
+
+<a href="{% url 'eliminar' c.id %}">Eliminar</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
