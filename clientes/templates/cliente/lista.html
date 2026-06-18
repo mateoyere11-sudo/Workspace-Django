@@ -4,38 +4,38 @@
 
 <table border="1">
 
-<tr>
+    <tr>
 
-<th>ID</th>
+        <th>ID</th>
 
-<th>Razón Social</th>
+        <th>Razón Social</th>
 
-<th>Correo</th>
+        <th>Correo</th>
 
-<th>Acciones</th>
+        <th>Acciones</th>
 
-</tr>
+    </tr>
 
-{% for c in clientes %}
+    {% for c in clientes %}
 
-<tr>
+    <tr>
 
-<td>{{c.id}}</td>
+        <td>{{c.id}}</td>
 
-<td>{{c.razon_social}}</td>
+        <td>{{c.razon_social}}</td>
 
-<td>{{c.correo_corporativo}}</td>
+        <td>{{c.correo_corporativo}}</td>
 
-<td>
+        <td>
 
-<a href="{% url 'editar' c.id %}">Editar</a>
+            <a href="{% url 'editar' c.id %}">Editar</a>
 
-<a href="{% url 'eliminar' c.id %}">Eliminar</a>
+            <a href="{% url 'eliminar' c.id %}">Eliminar</a>
 
-</td>
+        </td>
 
-</tr>
+    </tr>
 
-{% endfor %}
+    {% endfor %}
 
 </table>
