@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+<h2>{{ titulo }}</h2>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Nombre de la sala</label>
+        <input type="text" name="nombre_sala" class="form-control"
+               value="{{ espacio.nombre_sala if espacio else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Tipo de espacio</label>
+        <select name="tipo_espacio" class="form-control">
+            <option value="sala"        {% if espacio and espacio.tipo_espacio == 'sala' %}selected{% endif %}>Sala de Juntas</option>
+            <option value="escritorio"  {% if espacio and espacio.tipo_espacio == 'escritorio' %}selected{% endif %}>Escritorio Compartido</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Capacidad (personas)</label>
+        <input type="number" name="capacidad_personas" class="form-control"
+               value="{{ espacio.capacidad_personas if espacio else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Piso / Edificio</label>
+        <input type="number" name="piso_edificio" class="form-control"
+               value="{{ espacio.piso_edificio if espacio else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Precio por hora</label>
+        <input type="number" step="0.01" name="precio_hora" class="form-control"
+               value="{{ espacio.precio_hora if espacio else '' }}" required>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="tiene_aire" class="form-check-input"
+               {% if espacio and espacio.tiene_aire %}checked{% endif %}>
+        <label class="form-check-label">Tiene aire acondicionado</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="tiene_proyector" class="form-check-input"
+               {% if espacio and espacio.tiene_proyector %}checked{% endif %}>
+        <label class="form-check-label">Tiene proyector</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="estado_disponible" class="form-check-input"
+               {% if not espacio or espacio.estado_disponible %}checked{% endif %}>
+        <label class="form-check-label">Disponible</label>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea name="descripcion" class="form-control" rows="3">{{ espacio.descripcion if espacio else '' }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="/espacios/" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

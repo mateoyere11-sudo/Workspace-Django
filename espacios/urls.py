@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
+
+
+router = DefaultRouter()
+router.register(r'espacios', views.EspacioViewSet, basename='espacio-api')
+router.register(r'servicios', views.ServicioAdicionalViewSet, basename='servicio-api')
 
 urlpatterns = [
     # Espacio
@@ -12,4 +18,6 @@ urlpatterns = [
     path('servicios/nuevo/',             views.servicio_crear,   name='servicio_crear'),
     path('servicios/<int:pk>/editar/',   views.servicio_editar,  name='servicio_editar'),
     path('servicios/<int:pk>/eliminar/', views.servicio_eliminar,name='servicio_eliminar'),
+
+    path('api/', include(router.urls))
 ]

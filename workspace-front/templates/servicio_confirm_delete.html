@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block titulo %}Eliminar Servicio{% endblock %}
+
+{% block contenido %}
+<div class="card border-danger">
+    <div class="card-body">
+        <h4 class="text-danger">¿Eliminar este servicio?</h4>
+        <p>Tipo: <strong>{{ servicio.tipo_servicio }}</strong> — Reserva #<strong>{{ servicio.reserva }}</strong></p>
+        <form method="POST">
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a href="/servicios/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

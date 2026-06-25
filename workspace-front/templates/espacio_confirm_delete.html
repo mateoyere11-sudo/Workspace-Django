@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block titulo %}Eliminar Espacio{% endblock %}
+
+{% block contenido %}
+<div class="card border-danger">
+    <div class="card-body">
+        <h4 class="text-danger">¿Eliminar este espacio?</h4>
+        <p>Vas a eliminar: <strong>{{ espacio.nombre_sala }}</strong></p>
+        <form method="POST">
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a href="/espacios/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

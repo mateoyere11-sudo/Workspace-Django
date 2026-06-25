@@ -3,6 +3,11 @@ from .models import Espacio, ServicioAdicional
 from .forms import EspacioForm, ServicioAdicionalForm
 from django.contrib.auth.decorators import login_required
 
+from rest_framework import viewsets
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+from .serializers import EspacioSerializer, ServicioAdicionalSerializer
+
 # ── ESPACIO ──────────────────────────────────────────────────────
 
 @login_required
@@ -78,3 +83,15 @@ def servicio_eliminar(request, pk):
         servicio.delete()
         return redirect('servicio_lista')
     return render(request, 'espacios/servicio_confirm_delete.html', {'servicio': servicio})
+
+class EspacioViewSet(viewsets.ModelViewSet):
+    queryset = Espacio.objects.all()
+    serializer_class = EspacioSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class ServicioAdicionalViewSet(viewsets.ModelViewSet):
+    queryset = ServicioAdicional.objects.all()
+    serializer_class = ServicioAdicionalSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]

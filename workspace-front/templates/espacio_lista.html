@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block titulo %}Espacios{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Espacios</h2>
+    <a href="/espacios/nuevo/" class="btn btn-success">+ Nuevo Espacio</a>
+</div>
+
+{% if espacios %}
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Capacidad</th>
+            <th>Piso</th>
+            <th>Precio/Hora</th>
+            <th>Disponible</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for e in espacios %}
+        <tr>
+            <td>{{ e.nombre_sala }}</td>
+            <td>{{ e.tipo_espacio }}</td>
+            <td>{{ e.capacidad_personas }}</td>
+            <td>{{ e.piso_edificio }}</td>
+            <td>${{ e.precio_hora }}</td>
+            <td>
+                {% if e.estado_disponible %}
+                    <span class="badge bg-success">Sí</span>
+                {% else %}
+                    <span class="badge bg-danger">No</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/espacios/{{ e.id }}/editar/"   class="btn btn-sm btn-warning">Editar</a>
+                <a href="/espacios/{{ e.id }}/eliminar/" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">No hay espacios registrados aún.</div>
+{% endif %}
+{% endblock %}
