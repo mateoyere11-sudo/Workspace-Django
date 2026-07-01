@@ -10,7 +10,7 @@ AUTH = ('yeremi', '1234567890.m')
 def get_auth():
     return AUTH
 
-@app.route('/')
+@app.route('/') 
 def index():
     return redirect(url_for('espacio_lista'))
 
